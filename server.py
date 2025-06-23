@@ -8,7 +8,7 @@ async def handler(ws, path):
     clients.add(ws)
     try:
         async for message in ws:
-            print(message)
+            print("Got message:", message)
             await asyncio.gather(*[c.send(message) for c in clients if c != ws])
     finally:
         clients.remove(ws)
